@@ -693,6 +693,20 @@ body.dark .option.correct .opt-text, body.dark .option.wrong .opt-text{ color:va
   background:var(--no-tint) !important; border-color:var(--no) !important; border-left-color:var(--no) !important; }
 .explanation.ok .expl-label, body.dark .explanation.ok .expl-label{ color:var(--ok) !important; }
 .explanation.no .expl-label, body.dark .explanation.no .expl-label{ color:var(--no) !important; }
+
+/* The Begin button was re-styled as an outline: background transparent with
+   !important, but the colour declaration that made it white sits in a later
+   rule, so white text ended up on the pale ground at 1.13. The outlined form
+   is the intended one, so the text follows the border. */
+.btn-begin{ background:transparent !important; color:var(--ink) !important;
+  border:2px solid var(--ink) !important; }
+.btn-begin .sa{ color:var(--ink) !important; }
+.btn-begin:hover{ background:var(--ink) !important; color:var(--paper) !important; }
+.btn-begin:hover .sa{ color:var(--paper) !important; }
+body.dark .btn-begin{ color:var(--ink) !important; border-color:var(--ink) !important; }
+body.dark .btn-begin .sa{ color:var(--ink) !important; }
+body.dark .btn-begin:hover{ background:var(--ink) !important; color:var(--sand) !important; }
+body.dark .btn-begin:hover .sa{ color:var(--sand) !important; }
 </style>
 </head>
 <body>
@@ -971,7 +985,7 @@ const FLOW = [
       "2": 1,
       "3": 1
     },
-    "explanation": "The first two are on the page. The other two are true, and you read them earlier in this lesson. That's what makes them easy to put in the wrong column. A quote question only takes what the source says, so check whether you're reading it or remembering it.",
+    "explanation": "The first two are on the page. The other two are true, and you read them earlier. That's what makes them easy to put in the wrong column. A quote question only takes what the source says, so check whether you're reading it or remembering it.",
     "marks": "Practice"
   },
   {
@@ -1062,7 +1076,7 @@ const FLOW = [
   {
     "type": "carousel",
     "tag": "Fact recap",
-    "heading": "Every date and name from this lesson",
+    "heading": "Every date and name so far",
     "cards": [
       {
         "lead": "1961",
@@ -1094,7 +1108,7 @@ const FLOW = [
     "type": "question",
     "build": true,
     "part": "Angola's independence was decided in Lisbon, not Luanda. Portugal collapsed so fast that no settlement could be built, and three armed movements met independence with no agreed government",
-    "q": "Which sentence best sums up what this lesson establishes?",
+    "q": "Which sentence best sums up what you have read?",
     "options": [
       "Angola's independence was decided in Lisbon, not Luanda. Portugal collapsed so fast that no settlement could be built, and three armed movements met independence with no agreed government",
       "Portugal fought a colonial war in Angola from 1961. Army officers overthrew the government in Lisbon in April 1974, ending thirteen years of fighting across three territories",
@@ -1108,7 +1122,7 @@ const FLOW = [
   {
     "type": "runsum",
     "tag": "Your running summary",
-    "heading": "What this lesson argues",
+    "heading": "The argument so far",
     "label": "The argument so far"
   },
   {
@@ -1521,7 +1535,7 @@ function renderRunsum(item){
 function showBuildPop(part, label){
   const back=document.createElement("div");
   back.className="pop-back";
-  back.innerHTML=`<div class="pop"><div class="pop-label">${esc(label||"The line this lesson argues")}</div><div class="pop-text">${esc(part)}</div><button class="pop-btn" id="pop-ok">Got it</button></div>`;
+  back.innerHTML=`<div class="pop"><div class="pop-label">${esc(label||"The line you are arguing")}</div><div class="pop-text">${esc(part)}</div><button class="pop-btn" id="pop-ok">Got it</button></div>`;
   document.body.appendChild(back);
   document.getElementById("pop-ok").addEventListener("click",()=>back.remove());
 }
